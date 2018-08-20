@@ -3,11 +3,12 @@ from keras import utils
 
 from model import MnasNet
 
-input_shape = (224, 224)
+input_shape = (32, 32)
 batch_size = 2048
+nb_classes = 10
 epochs = 100
 
-model = MnasNet(input_shape=input_shape+(3,), pooling='avg')
+model = MnasNet(input_shape=input_shape+(3,), pooling='avg', nb_classes=nb_classes)
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 (x_train, y_train), (x_test, y_test) = datasets.cifar10.load_data()
