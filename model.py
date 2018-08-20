@@ -2,10 +2,6 @@ import keras
 from keras import layers
 from keras import models
 
-batch_size = 32
-epochs = 25
-nb_classes = 10
-
 def _conv_block(inputs, strides, filters, kernel=3):
     """
     Adds an initial convolution layer (with batch normalization and relu6).
