@@ -40,7 +40,6 @@ def _sep_conv_block(inputs, filters, alpha, pointwise_conv_filters, depth_multip
     
 def _inverted_res_block(inputs, kernel, expansion, alpha, filters, block_id, stride=1):
     in_channels = inputs._keras_shape[-1]
-    pw_stride = 1
     pointwise_conv_filters = int(filters * alpha)
     pointwise_filters = _make_divisible(pointwise_conv_filters, 8)
     x = inputs
@@ -83,7 +82,7 @@ def _inverted_res_block(inputs, kernel, expansion, alpha, filters, block_id, str
 
     print(x.name, inputs.shape, x.shape)
     
-    if in_channels == pointwise_filters and pw_stride == 1:
+    if in_channels == pointwise_filters and stride == 1:
         print("Adding %s" % x.name)
         return layers.Add(name=prefix + 'add')([inputs, x])
     return x
