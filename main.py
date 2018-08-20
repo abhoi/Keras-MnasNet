@@ -1,6 +1,6 @@
 from model import MnasNet
 
-model = MnasNet(input_shape=(32, 32)+(3,), pooling='avg')
+model = MnasNet(input_shape=(224, 224)+(3,), pooling='avg')
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 (x_train, y_train), (x_test, y_test) = datasets.cifar10.load_data()
