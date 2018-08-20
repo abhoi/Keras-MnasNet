@@ -2,6 +2,15 @@ import keras
 from keras import layers
 from keras import models
 
+def _make_divisible(v, divisor, min_value=None):
+    if min_value is None:
+        min_value = divisor
+    new_v = max(min_value, int(v + divisor / 2) // divisor * divisor)
+    # Make sure that round down does not go down by more than 10%.
+    if new_v < 0.9 * v:
+        new_v += divisor
+    return new_v
+
 def _conv_block(inputs, strides, filters, kernel=3):
     """
     Adds an initial convolution layer (with batch normalization and relu6).
